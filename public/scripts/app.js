@@ -1,6 +1,6 @@
 console.log("Sanity Check: JS is working!");
 
-$(document).ready(function(){
+$(document).ready(() => {
 
 
   $.ajax({
@@ -14,18 +14,18 @@ $(document).ready(function(){
 });
 
 
-function handleSuccess(json) { 
+const handleSuccess = json => {
   // takes an array of albums and renders them as an unordered list
-  var albums = json;
-  var outputHtml = '<ul>';
-  albums.forEach(function(album) {
-    outputHtml = outputHtml + "<li>" + album.artist + " -- " + album.title + "</li>";
+  const albums = json;
+  let outputHtml = `<ul>`;
+  albums.forEach (album => {
+    outputHtml = `${outputHtml}<li>${album.artist} -- ${album.title}</li>`;
   });
   outputHtml += '</ul>';
   $('#albumTarget').html(outputHtml);
 }
 
-function handleError(e) {
-  console.log('uh oh');
+const handleError = (XHR, status, errorThrown) => {
+  console.log(`uh oh! Error: ${errorThrown}`);
   $('#albumTarget').text('Failed to load albums, is the server working?');
 }

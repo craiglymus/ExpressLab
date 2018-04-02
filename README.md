@@ -1,6 +1,6 @@
 # <img src="https://cloud.githubusercontent.com/assets/7833470/10423298/ea833a68-7079-11e5-84f8-0a925ab96893.png" width="60"> Express Practice
 
-### Base Challenges - Build an Express App
+### Base Challenges - Build an Express App using ES6
 
 **Check Install**
 
@@ -37,23 +37,19 @@
   ```js
     // server.js
     // SERVER-SIDE JAVASCRIPT
-    var express = require('express');
-    var app = express();
+    const express = require('express');
+    const app = express();
 
     // Allow CORS: we'll use this today to reduce security so we can more easily test our code in the browser.
-    app.use(function(req, res, next) {
+    app.use((req, res, next) => {
       res.header("Access-Control-Allow-Origin", "*");
       res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
       next();
     });
 
-    app.get('/', function (req, res) {
-      res.send('Hello World!');
-    });
+    app.get('/', = (req, res) => res.send('Hello World!'));
 
-    app.listen(process.env.PORT || 3000, function () {
-      console.log('Example app listening at http://localhost:3000/');
-    });
+    app.listen(process.env.PORT || 3000,  () => console.log('Example app listening at http://localhost:3000/'));
   ```
 
 1. Add a comment above each line of code saying what each line does.
@@ -72,7 +68,7 @@
 
   ```js
     // server.js
-    var albums = [
+    const albums = [
       {
         title: 'Cupid Deluxe',
         artist: 'Blood Orange'
@@ -104,13 +100,10 @@
      error: handleError
    });
 
-   function handleSuccess(json) {
-     console.log(json);
-   }
+   const handleSuccess = json => console.log(json);
 
-   function handleError(xhr, status, errorThrown) {
-     console.log('uh oh');
-   }
+
+   const handleError = (xhr, status, errorThrown) => console.log(`uh oh! Error: ${errorThrown}`);
   ```
   > Note: you must be on a page with jQuery in order to use .ajax in the browser console!  Fortunately, the included index.js does have jQuery.
 
@@ -120,7 +113,7 @@
   ```
   Dig into those and see what they look like.
 
-3. Next edit `app.js` to run the same ajax call as above and console log the data.  Remember to put your ajax call inside the handler for the document ready event: `$(document).on('ready', function() {})`. Consider moving the success handling function definition outside the ajax call, since it's about to get more complicated!
+3. Next edit `app.js` to run the same ajax call as above and console log the data.  Remember to put your ajax call inside the handler for the document ready event: `$(document).on('ready', () => {})`. Consider moving the success handling function definition outside the ajax call, since it's about to get more complicated!
 
 3. Once you have that, edit `app.js` to display this data on your `index.html` page using jQuery.  Decide how you want it to look.  **Hint:** You might also find it useful to edit `index.html`!
 
@@ -179,7 +172,7 @@ We're making a weird app. Albums and taquerias.  Treat your senses.
 
   ```js
     // server.js
-    var taquerias = [
+    const taquerias = [
       { name: "La Taqueria" },
       { name: "El Farolito" },
       { name: "Taqueria Cancun" }
@@ -190,9 +183,7 @@ We're making a weird app. Albums and taquerias.  Treat your senses.
 
 
   ```js
-    app.get('/api/taquerias', function (req, res) {
-      res.json(taquerias);
-    });
+    app.get('/api/taquerias', (req, res) => res.json(taquerias));
   ```
 
 1. Navigate to http://localhost:3000/api/taquerias (remember to restart your server first!) and check that the data is showing up.
@@ -208,7 +199,7 @@ We're making a weird app. Albums and taquerias.  Treat your senses.
       success: handleResponse
     });
 
-    function handleResponse(json) {
+    const handleResponse = json => {
       // your code here
     }
     ```
